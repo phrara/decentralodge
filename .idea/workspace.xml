@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/Node.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/interaction.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/chat_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tool/file.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/values/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/values/priv_key" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/init.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/join_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/ping_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tool/calc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tool/peer_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/Node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/interaction.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/chat_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/chat_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,14 +58,16 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../decentralodge - 副本" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\academy\GoProj\dachuang\decentralodge\tool" />
+      <recent name="D:\academy\GoProj\dachuang\decentralodge\router" />
       <recent name="D:\academy\GoProj\dachuang\decentralodge\configs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go 构建.go build main.go">
     <configuration name="go build decentralodge/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="decentralodge" />
       <working_directory value="$PROJECT_DIR$" />
@@ -71,8 +77,18 @@
       <filePath value="$PROJECT_DIR$/cmd/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="decentralodge" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="decentralodge" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 构建.go build main.go" />
         <item itemvalue="Go 构建.go build decentralodge/cmd" />
       </list>
     </recent_temporary>
@@ -94,5 +110,12 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="*(*&quot;decentralodge/core.PeerNode&quot;)(824634808128)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -2,8 +2,13 @@ package service
 
 import (
 	"bufio"
+	"context"
+	"decentralodge/tool"
 	"fmt"
 	"github.com/libp2p/go-libp2p-core/network"
+	"github.com/libp2p/go-libp2p-core/peer"
+	"github.com/libp2p/go-libp2p-core/peerstore"
+	"github.com/multiformats/go-multiaddr"
 	"log"
 	"os"
 )
@@ -12,6 +17,10 @@ var s chan int
 
 func ChatHandler(s network.Stream) {
 	log.Println("Got a new stream!")
+
+	// 将进行通话的节点加入路由表
+	pn := tool.ParsePeerNode(s.Conn().RemoteMultiaddr().String() + "/p2p/" + s.Conn().RemotePeer().String())
+	serv.router.AddNode(pn)
 
 	// Create a buffer stream for non blocking read and write.
 	rw := bufio.NewReadWriter(bufio.NewReader(s), bufio.NewWriter(s))
@@ -58,9 +67,33 @@ func writeData(rw *bufio.ReadWriter) {
 	}
 }
 
-func ChatWithPeer(stream network.Stream) {
-	rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
+// Chat 主动与对等节点交互
+func (s *Service) Chat(p string) {
+	maddr, err := multiaddr.NewMultiaddr(p)
+	if err != nil {
+		log.Println(err)
+		return
+	}
 
+	// Extract the peer ID from the multiaddr.
+	info, err := peer.AddrInfoFromP2pAddr(maddr)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	// Add the destination's peer multiaddress in the peerstore.
+	// This will be used during connection and stream creation by libp2p.
+	s.Host.Peerstore().AddAddrs(info.ID, info.Addrs, peerstore.PermanentAddrTTL)
+
+	// Start a stream with the destination.
+	// Multiaddress of the destination peer is fetched from the peerstore using 'peerId'.
+	stream, err := s.Host.NewStream(context.Background(), info.ID, CHAT)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
 	go writeData(rw)
 	go readData(rw)
 }

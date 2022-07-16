@@ -3,18 +3,20 @@ package main
 import (
 	"decentralodge/core"
 	"fmt"
+	"time"
 )
 
 func main() {
 
-	node, err := core.GenerateNode()
+	hnode, err := core.GenerateNode()
 	if err != nil {
 		return
 	}
-	fmt.Println(node.NodeAddr)
+	fmt.Println(hnode.NodeAddr)
 
-	node.ServiceHandlerInit()
+	hnode.JoinNetwork()
+	time.Sleep(time.Second * 2)
+	fmt.Println(hnode.Router.RawData())
 
 	select {}
-
 }
