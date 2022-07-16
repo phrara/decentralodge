@@ -5,13 +5,25 @@ import (
 	"decentralodge/config"
 	"decentralodge/router"
 	"decentralodge/service"
-	"fmt"
+	"decentralodge/tool"
 	"github.com/libp2p/go-libp2p"
 	"github.com/libp2p/go-libp2p-core/host"
 	"github.com/libp2p/go-libp2p-core/peer"
-	"github.com/libp2p/go-libp2p-core/peerstore"
 	"github.com/multiformats/go-multiaddr"
 )
+
+// BootstrapNodes 引导节点
+var BootstrapNodes []*tool.PeerNode
+
+func init() {
+}
+
+func getBootstrapNodes(bn string) []*tool.PeerNode {
+	bsn := make([]*tool.PeerNode, 0)
+	pn := tool.ParsePeerNode(bn)
+	bsn = append(bsn, pn)
+	return bsn
+}
 
 type HostNode struct {
 	// p2p节点
@@ -35,6 +47,9 @@ func GenerateNode() (*HostNode, error) {
 	c.Load()
 	node := new(HostNode)
 	node.Ctx = context.Background()
+
+	// 初始化引导节点
+	BootstrapNodes = getBootstrapNodes(c.BootstrapNode)
 
 	// 获取节点
 	h, err := libp2p.New(
@@ -67,31 +82,4 @@ func GenerateNode() (*HostNode, error) {
 	node.Serv = service.NewService(node.Host, node.Router).ServiceHandlerRegister()
 
 	return node, nil
-}
-
-func (n *HostNode) JoinNetwork() {
-	n.Router.Clear()
-	for _, bn := range BootstrapNodes {
-		node := bn
-		n.Host.Peerstore().AddAddrs(node.NodeInfo.ID, node.NodeInfo.Addrs, peerstore.PermanentAddrTTL)
-		go func() {
-			res := <-n.Serv.Ping(node)
-			if res.Error != nil {
-				return
-			} else {
-				// ping 通了
-				// 发出加入申请
-				if b := n.Serv.JoinApply(node); b {
-					fmt.Println("Join Network Successfully")
-					n.Router.AddNode(node)
-				}
-			}
-		}()
-	}
-}
-
-func (n *HostNode) Close() error {
-	err := n.Host.Close()
-	n.Router.Clear()
-	return err
 }

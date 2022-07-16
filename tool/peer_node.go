@@ -12,6 +12,14 @@ type PeerNode struct {
 	NodeAddr multiaddr.Multiaddr
 }
 
+func (p *PeerNode) String() string {
+	return p.NodeAddr.String()
+}
+
+func (p *PeerNode) ID() peer.ID {
+	return p.NodeInfo.ID
+}
+
 func ParsePeerNode(p string) *PeerNode {
 	addr, err := multiaddr.NewMultiaddr(p)
 	if err != nil {

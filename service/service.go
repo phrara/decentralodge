@@ -1,7 +1,9 @@
 package service
 
 import (
+	"context"
 	"decentralodge/router"
+	"decentralodge/tool"
 	"github.com/libp2p/go-libp2p-core/host"
 	"github.com/libp2p/go-libp2p/p2p/protocol/ping"
 )
@@ -11,6 +13,7 @@ var serv *Service
 const (
 	CHAT = "/chat"
 	JOIN = "/join"
+	RD   = "/rd"
 )
 
 func init() {
@@ -38,5 +41,10 @@ func (s *Service) ServiceHandlerRegister() *Service {
 	s.Host.SetStreamHandler(CHAT, ChatHandler)
 	s.Host.SetStreamHandler(ping.ID, s.pingService.PingHandler)
 	s.Host.SetStreamHandler(JOIN, JoinApplyHandler)
+	s.Host.SetStreamHandler(RD, RouterDistributeHandler)
 	return s
+}
+
+func (s *Service) Ping(pn *tool.PeerNode) <-chan ping.Result {
+	return s.pingService.Ping(context.Background(), pn.ID())
 }

@@ -11,7 +11,7 @@ import (
 
 func JoinApplyHandler(s network.Stream) {
 	pn := tool.ParsePeerNode(s.Conn().RemoteMultiaddr().String() + "/p2p/" + s.Conn().RemotePeer().String())
-	fmt.Println("receive a join application from", pn.NodeAddr)
+	fmt.Println("receive a join application from", pn.String())
 
 	// 节点加入路由表
 	serv.router.AddNode(pn)
@@ -24,7 +24,7 @@ func JoinApplyHandler(s network.Stream) {
 }
 
 func (s *Service) JoinApply(bootstrapNode *tool.PeerNode) bool {
-	stream, err := s.Host.NewStream(context.Background(), bootstrapNode.NodeInfo.ID, JOIN)
+	stream, err := s.Host.NewStream(context.Background(), bootstrapNode.ID(), JOIN)
 	if err != nil {
 		fmt.Println(err)
 		return false

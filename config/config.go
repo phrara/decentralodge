@@ -28,8 +28,10 @@ type Config struct {
 	IP         string `json:"ip"`
 	Port       string `json:"port"`
 	RandomSeed int64  `json:"randomSeed"`
-	// 私钥
+	// Private Key
 	PrvKey crypto.PrivKey `json:"prvKey"`
+	// Bootstrap Node
+	BootstrapNode string `json:"bootstrapNode"`
 }
 
 func (c *Config) Save() bool {
@@ -70,7 +72,7 @@ func (c *Config) AddrString() string {
 }
 
 // New Get a Configuration
-func New(username, pwd, ipAddr string, rs int64) (*Config, error) {
+func New(username, pwd, ipAddr string, rs int64, bn string) (*Config, error) {
 	strs := strings.Split(ipAddr, ":")
 	if strs[0] == "" {
 		strs[0] = "127.0.0.1"
@@ -84,12 +86,13 @@ func New(username, pwd, ipAddr string, rs int64) (*Config, error) {
 	}
 	if b := ipFormatCheck(strs); b {
 		return &Config{
-			Username:   username,
-			Password:   pwd,
-			IP:         strs[0],
-			Port:       strs[1],
-			RandomSeed: rs,
-			PrvKey:     prvKey,
+			Username:      username,
+			Password:      pwd,
+			IP:            strs[0],
+			Port:          strs[1],
+			RandomSeed:    rs,
+			PrvKey:        prvKey,
+			BootstrapNode: bn,
 		}, nil
 	} else {
 		return nil, errors.New("the format of ipAddr is wrong")
