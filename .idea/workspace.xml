@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/core/action.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/Node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/init.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/action.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/action.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/chat_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/chat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/join_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/join.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/ping_service.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/peer_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tool/peer_node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/values/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/values/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/router_distribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

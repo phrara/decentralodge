@@ -30,7 +30,7 @@ func RouterDistributeHandler(s network.Stream) {
 	}
 }
 
-func (s *Service) RouterDistribute() {
+func (s *Service) RouterDistribute() (errNum int) {
 	localRouter := serv.router.RawData()
 	nodes := serv.router.AllNodes()
 	for e := nodes.Front(); e != nil; e = e.Next() {
@@ -39,6 +39,8 @@ func (s *Service) RouterDistribute() {
 			stream, err := s.Host.NewStream(context.Background(), p.ID(), RD)
 			if err != nil {
 				fmt.Println(err)
+				// Record the number of errors to evaluate the situation of network
+				errNum = errNum + 1
 				return
 			}
 
@@ -48,4 +50,6 @@ func (s *Service) RouterDistribute() {
 
 		}(pn)
 	}
+
+	return errNum
 }

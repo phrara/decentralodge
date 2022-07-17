@@ -118,11 +118,13 @@ func (r *Router) AllNodes() *list.List {
 	return nodes
 }
 
-func (r *Router) Cap() int {
+func (r *Router) Sum() int {
 	size := 0
 	for i := 0; i <= 256; i++ {
 		l, _ := r.table.Load(i)
-		size = size + l.(*list.List).Len()
+		if l != nil {
+			size = size + l.(*list.List).Len()
+		}
 	}
 	return size
 }
