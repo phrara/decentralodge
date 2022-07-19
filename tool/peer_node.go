@@ -21,6 +21,9 @@ func (p *PeerNode) ID() peer.ID {
 }
 
 func ParsePeerNode(p string) *PeerNode {
+	if p == "" {
+		return nil
+	}
 	addr, err := multiaddr.NewMultiaddr(p)
 	if err != nil {
 		return nil

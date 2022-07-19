@@ -18,5 +18,7 @@ func main() {
 	time.Sleep(time.Second * 2)
 	fmt.Println(hnode.Router.RawData())
 
+	hnode.RouterDistributeOn(false, 10)
+
 	select {}
 }

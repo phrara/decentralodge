@@ -5,6 +5,7 @@ import (
 	"decentralodge/router"
 	"decentralodge/tool"
 	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/peerstore"
 	"github.com/libp2p/go-libp2p/p2p/protocol/ping"
 )
 
@@ -46,5 +47,6 @@ func (s *Service) ServiceHandlerRegister() *Service {
 }
 
 func (s *Service) Ping(pn *tool.PeerNode) <-chan ping.Result {
+	s.Host.Peerstore().AddAddrs(pn.ID(), pn.NodeInfo.Addrs, peerstore.PermanentAddrTTL)
 	return s.pingService.Ping(context.Background(), pn.ID())
 }

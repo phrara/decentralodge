@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/service/file_transport.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/action.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/action.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/join.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/join.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/router_distribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tool/peer_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tool/peer_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/values/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/values/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +54,8 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../decentralodge - 副本" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.配色方案字体" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -74,8 +81,13 @@
       <package value="decentralodge" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <output_directory value="$PROJECT_DIR$/out" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go 构建.go build decentralodge/cmd" />
+      <item itemvalue="Go 构建.go build main.go" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go 构建.go build main.go" />

@@ -6,6 +6,7 @@ import (
 	"decentralodge/tool"
 	"fmt"
 	"github.com/libp2p/go-libp2p-core/network"
+	"github.com/libp2p/go-libp2p-core/peerstore"
 	"strings"
 )
 
@@ -24,6 +25,8 @@ func JoinApplyHandler(s network.Stream) {
 }
 
 func (s *Service) JoinApply(bootstrapNode *tool.PeerNode) bool {
+	s.Host.Peerstore().AddAddrs(bootstrapNode.ID(), bootstrapNode.NodeInfo.Addrs, peerstore.PermanentAddrTTL)
+
 	stream, err := s.Host.NewStream(context.Background(), bootstrapNode.ID(), JOIN)
 	if err != nil {
 		fmt.Println(err)

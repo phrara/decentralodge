@@ -4,5 +4,5 @@
   "port":"8082",
   "randomSeed":823,
   "prvKey":null,
-  "bootstrapNode": "/ip4/127.0.0.1/tcp/8083/p2p/QmPjfJ4pPUyScEG68jC44tjY7NQ7fdjFszDM3i69YTJBMH"
+  "bootstrapNode": "/ip4/127.0.0.1/tcp/8083/p2p/QmfSRvrHwYws2rGMRt3eerQ3Uixr2Ta2CVkNSQ5oSryELW"
 }
