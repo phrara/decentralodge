@@ -10,4 +10,34 @@ The progress of the project would be slow,writer sincerely hope it could
 make great progress one day.
 
 
+### Function List
+p2p Chat is done
+<br>
+p2p Ping is done
+<br>
+p2p JoinApply is done 
+<br>
+p2p RouterDistribution is done
+```go
+    hn, _ := core.GenerateNode() 
+	hn.JoinNetwork()
+	hn.RouterDistributeOn(false, 10)
+	// hn.RouterDistributeOn(true, 0)
+	hn.RouterDistributeOff()
+	select{}
+```
+
+
+### Configuration 
+Two configs are needed for running the server,they should be
+stored in directory /root/values. One is `config.json`, the
+other is `priv_key`, both of them can be made by API:
+```go
+c, err := config.New()
+if err != nil {
+	return
+}    
+c.Save()
+```
+
 > author phrara

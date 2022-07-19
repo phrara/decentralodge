@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/service/file_transport.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/action.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/action.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/join.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/join.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/router_distribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/peer_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tool/peer_node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/values/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/values/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
