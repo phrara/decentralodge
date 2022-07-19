@@ -18,7 +18,9 @@ func main() {
 	time.Sleep(time.Second * 2)
 	fmt.Println(hnode.Router.RawData())
 
-	hnode.RouterDistributeOn(false, 10)
+	hnode.RouterDistributeOn(false, 5)
+	time.Sleep(time.Second * 2)
+	hnode.Serv.SendFile(core.BootstrapNodes[0], "A test file content")
 
 	select {}
 }

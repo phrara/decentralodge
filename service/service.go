@@ -15,6 +15,7 @@ const (
 	CHAT = "/chat"
 	JOIN = "/join"
 	RD   = "/rd"
+	FT   = "/ft"
 )
 
 func init() {
@@ -43,6 +44,7 @@ func (s *Service) ServiceHandlerRegister() *Service {
 	s.Host.SetStreamHandler(ping.ID, s.pingService.PingHandler)
 	s.Host.SetStreamHandler(JOIN, JoinApplyHandler)
 	s.Host.SetStreamHandler(RD, RouterDistributeHandler)
+	s.Host.SetStreamHandler(FT, RecvFileHandler)
 	return s
 }
 
