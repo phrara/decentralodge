@@ -15,9 +15,10 @@ func RecvFileHandler(s network.Stream) {
 	fmt.Println("Get a file from", pn.String())
 
 	rw := bufio.NewReadWriter(bufio.NewReader(s), bufio.NewWriter(s))
-	file, _ := rw.ReadString('>')
+
+	file, _ := rw.ReadBytes('\n')
 	defer s.Close()
-	fmt.Println(tool.UnwrapFile(file))
+	fmt.Println(tool.NewFile("", "").Unwrap(file).Content)
 
 }
 
@@ -31,7 +32,7 @@ func (s *Service) SendFile(pn *tool.PeerNode, file string) bool {
 			return false
 		}
 		rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
-		rw.WriteString(tool.WrapFile(file))
+		rw.Write(tool.NewFile("txt", file).Wrap())
 		rw.Flush()
 		fmt.Println("send a file successfully")
 		return true

@@ -51,19 +51,20 @@ func (c *Config) Save() bool {
 	return true
 }
 
-func (c *Config) Load() {
+func (c *Config) Load() *Config {
 	data, err := tool.LoadFile(cpath)
 	if err != nil {
 		log.Fatal(err)
-		return
+		return nil
 	}
 	err = json.Unmarshal(data, c)
 	if err != nil {
 		log.Fatal(err)
-		return
+		return nil
 	}
 	pk, err := tool.LoadFile(kpath)
 	c.PrvKey, _ = crypto.UnmarshalPrivateKey(pk)
+	return c
 }
 
 func (c *Config) AddrString() string {

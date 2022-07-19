@@ -43,8 +43,7 @@ type HostNode struct {
 func GenerateNode() (*HostNode, error) {
 
 	// 读取配置
-	c := &config.Config{}
-	c.Load()
+	c := (&config.Config{}).Load()
 	node := new(HostNode)
 	node.Ctx = context.Background()
 

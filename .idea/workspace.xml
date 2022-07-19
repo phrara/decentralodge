@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/Node.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/out/go_build_main_go.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/file_transport.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/file_trans.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/router_distribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/file_trans.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/file_trans.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tool/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/tool/file.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

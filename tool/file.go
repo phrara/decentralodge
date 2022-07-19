@@ -1,9 +1,40 @@
 package tool
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
-	"strings"
 )
+
+type File struct {
+	Type    string `json:"type"`
+	Content string `json:"content"`
+}
+
+func NewFile(typ, content string) *File {
+	return &File{
+		Type:    typ,
+		Content: content,
+	}
+}
+
+func (f *File) Wrap() []byte {
+	wrap, err := json.Marshal(*f)
+	if err != nil {
+		return nil
+	}
+	wrap = append(wrap, '\n')
+	return wrap
+}
+
+func (f *File) Unwrap(wrap []byte) *File {
+	wrap = wrap[:len(wrap)-1]
+	err := json.Unmarshal(wrap, f)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return f
+}
 
 func WriteFile(b []byte, path string) error {
 	err := os.WriteFile(path, b, 02)
@@ -19,14 +50,4 @@ func LoadFile(path string) ([]byte, error) {
 		return nil, err
 	}
 	return file, nil
-}
-
-func WrapFile(content string) string {
-	return "<content:" + content + ">"
-}
-
-func UnwrapFile(file string) string {
-	content := strings.ReplaceAll(file, "<content:", "")
-	content = strings.ReplaceAll(content, ">", "")
-	return content
 }
