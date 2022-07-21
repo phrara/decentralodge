@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		return
 	}
-	fmt.Println(hnode.NodeAddr)
+	fmt.Println(hnode.NodeAddr.String())
 
 	hnode.JoinNetwork()
 	time.Sleep(time.Second * 2)

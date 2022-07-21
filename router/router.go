@@ -121,7 +121,7 @@ func (r *Router) AllNodes() *list.List {
 
 func (r *Router) Sum() int {
 	size := 0
-	for i := 0; i <= 256; i++ {
+	for i := 1; i <= 256; i++ {
 		l, _ := r.table.Load(i)
 		if l != nil {
 			size = size + l.(*list.List).Len()
