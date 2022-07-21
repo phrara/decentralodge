@@ -36,6 +36,10 @@ func (f *File) Unwrap(wrap []byte) *File {
 	return f
 }
 
+func (f *File) Size() int {
+	return len(f.Content)
+}
+
 func WriteFile(b []byte, path string) error {
 	err := os.WriteFile(path, b, 02)
 	if err != nil {

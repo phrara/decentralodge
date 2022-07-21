@@ -1,10 +1,10 @@
 package service
 
 import (
-	"bufio"
 	"context"
 	"decentralodge/tool"
 	"fmt"
+	"io"
 	"sync"
 
 	"github.com/libp2p/go-libp2p-core/network"
@@ -20,15 +20,31 @@ func RouterDistributeHandler(s network.Stream) {
 	serv.router.AddNode(pn)
 	fmt.Println("Get a distributed router table from", pn.String())
 
-	rw := bufio.NewReadWriter(bufio.NewReader(s), bufio.NewWriter(s))
-	router, _ := rw.ReadString('\n')
+	p := &tool.Packet{}
+	header := make([]byte, tool.HEADER)
+	_, err := io.ReadFull(s, header)
+	if err != nil {
+		return
+	}
+
+	err = p.ParseHeader(header)
+	if err != nil || p.Len == 0 {
+		return
+	}
+	val := make([]byte, p.Len)
+	_, err = io.ReadFull(s, val)
+	if err != nil {
+		return
+	}
+	p.Value = val
+
 	defer s.Close()
-	if router == "" || router == "\n" {
+	if p.ValString() == "\n" {
 		return
 	} else {
 		//Parse the raw data and use it to update the local router table
-		fmt.Println("remote router info is: \n", router)
-		data := serv.router.ParseData(router)
+		fmt.Println("remote router info is: \n", p.ValString())
+		data := serv.router.ParseData(p.ValString())
 		serv.router.Update(data)
 	}
 }
@@ -52,9 +68,15 @@ func (s *Service) RouterDistribute() (errNum int) {
 				errNum = errNum + 1
 				return
 			}
-			rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
-			rw.WriteString(localRouter + "\n")
-			rw.Flush()
+
+			packet := &tool.Packet{
+				Tag:   2,
+				Len:   uint32(len(localRouter)),
+				Value: localRouter,
+			}
+			wrap, _ := packet.Wrap()
+
+			stream.Write(wrap)
 
 		}(pn)
 	}

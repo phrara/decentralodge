@@ -16,7 +16,7 @@ func main() {
 
 	hnode.JoinNetwork()
 	time.Sleep(time.Second * 2)
-	fmt.Println(hnode.Router.RawData())
+	fmt.Println(string(hnode.Router.RawData()))
 
 	hnode.RouterDistributeOn(false, 5)
 	time.Sleep(time.Second * 2)

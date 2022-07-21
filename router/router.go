@@ -1,6 +1,7 @@
 package router
 
 import (
+	"bytes"
 	"container/list"
 	"decentralodge/tool"
 	"fmt"
@@ -151,8 +152,8 @@ func (r *Router) Update(table Table) {
 */
 // Router table will be transformed into a type of string data, witch is raw
 // This kind of string should make the consumption of router distribution lower and easier
-func (r *Router) RawData() string {
-	data := strings.Builder{}
+func (r *Router) RawData() []byte {
+	data := bytes.Buffer{}
 	for i := 1; i <= 256; i++ {
 		if v, _ := r.table.Load(i); v != nil {
 			l := v.(*list.List)
@@ -164,7 +165,7 @@ func (r *Router) RawData() string {
 			data.WriteString("||")
 		}
 	}
-	return data.String()
+	return data.Bytes()
 }
 
 // ParseData Transform the raw data into designated type, Table

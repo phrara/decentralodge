@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="264c8f05-5248-4f36-ace2-d1a7aa9b699d" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/tool/packet.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/Node.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/out/go_build_main_go.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/file_trans.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/file_trans.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/join.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/join.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/router_distribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/router_distribute.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tool/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/tool/file.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +59,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TCP/amethyst" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.配色方案字体" />
   </component>
   <component name="RecentsManager">

@@ -1,13 +1,12 @@
 package service
 
 import (
-	"bufio"
 	"context"
 	"decentralodge/tool"
 	"fmt"
 	"github.com/libp2p/go-libp2p-core/network"
 	"github.com/libp2p/go-libp2p-core/peerstore"
-	"strings"
+	"io"
 )
 
 func JoinApplyHandler(s network.Stream) {
@@ -18,9 +17,13 @@ func JoinApplyHandler(s network.Stream) {
 	serv.router.AddNode(pn)
 	fmt.Println("recent router table:\n", serv.router.RawData())
 
-	rw := bufio.NewReadWriter(bufio.NewReader(s), bufio.NewWriter(s))
-	rw.WriteString("acc\n")
-	rw.Flush()
+	p := &tool.Packet{
+		Tag:   1,
+		Len:   3,
+		Value: []byte("acc"),
+	}
+	data, _ := p.Wrap()
+	s.Write(data)
 
 }
 
@@ -32,21 +35,30 @@ func (s *Service) JoinApply(bootstrapNode *tool.PeerNode) bool {
 		fmt.Println(err)
 		return false
 	}
-	rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
-
-	ack, _ := rw.ReadString('\n')
+	// parse the header
+	packet := &tool.Packet{}
+	header := make([]byte, tool.HEADER)
+	_, err = io.ReadFull(stream, header)
+	if err != nil {
+		return false
+	}
+	err = packet.ParseHeader(header)
+	if err != nil || packet.Len == 0 {
+		return false
+	}
+	// get body
+	val := make([]byte, packet.Len)
+	_, err = io.ReadFull(stream, val)
+	if err != nil {
+		return false
+	}
+	packet.Value = val
 
 	defer stream.Close()
 
-	if ack == "" {
+	if packet.ValString() == "acc" {
+		return true
+	} else {
 		return false
 	}
-	if ack != "\n" {
-		if strings.Contains(ack, "acc") {
-			return true
-		} else {
-			return false
-		}
-	}
-	return false
 }

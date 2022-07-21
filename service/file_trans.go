@@ -1,12 +1,12 @@
 package service
 
 import (
-	"bufio"
 	"context"
 	"decentralodge/tool"
 	"fmt"
 	"github.com/libp2p/go-libp2p-core/network"
 	"github.com/libp2p/go-libp2p-core/peerstore"
+	"io"
 )
 
 func RecvFileHandler(s network.Stream) {
@@ -14,11 +14,26 @@ func RecvFileHandler(s network.Stream) {
 	serv.router.AddNode(pn)
 	fmt.Println("Get a file from", pn.String())
 
-	rw := bufio.NewReadWriter(bufio.NewReader(s), bufio.NewWriter(s))
+	p := &tool.Packet{}
+	header := make([]byte, tool.HEADER)
+	_, err := io.ReadFull(s, header)
+	if err != nil {
+		return
+	}
 
-	file, _ := rw.ReadBytes('\n')
+	err = p.ParseHeader(header)
+	if err != nil || p.Len == 0 {
+		return
+	}
+	val := make([]byte, p.Len)
+	_, err = io.ReadFull(s, val)
+	if err != nil {
+		return
+	}
+	p.Value = val
+
 	defer s.Close()
-	fmt.Println(tool.NewFile("", "").Unwrap(file).Content)
+	fmt.Println(tool.NewFile("", "").Unwrap(p.Value).Content)
 
 }
 
@@ -31,9 +46,16 @@ func (s *Service) SendFile(pn *tool.PeerNode, file string) bool {
 			fmt.Println(err)
 			return false
 		}
-		rw := bufio.NewReadWriter(bufio.NewReader(stream), bufio.NewWriter(stream))
-		rw.Write(tool.NewFile("txt", file).Wrap())
-		rw.Flush()
+		f := tool.NewFile("txt", file).Wrap()
+		packet := &tool.Packet{
+			Tag:   2,
+			Len:   uint32(len(f)),
+			Value: f,
+		}
+		wrap, _ := packet.Wrap()
+
+		stream.Write(wrap)
+
 		fmt.Println("send a file successfully")
 		return true
 	} else {
