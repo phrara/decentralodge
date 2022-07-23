@@ -4,6 +4,7 @@ import (
 	"context"
 	"decentralodge/tool"
 	"fmt"
+	"github.com/libp2p/go-libp2p-core/peerstore"
 	"io"
 	"sync"
 
@@ -54,9 +55,12 @@ func (s *Service) RouterDistribute() (errNum int) {
 	var wg sync.WaitGroup
 
 	localRouter := serv.router.RawData()
+	fmt.Println("recent router table:\n", string(localRouter))
 	nodes := serv.router.AllNodes()
 	for e := nodes.Front(); e != nil; e = e.Next() {
 		pn := e.Value.(*tool.PeerNode)
+
+		s.Host.Peerstore().AddAddrs(pn.ID(), pn.NodeInfo.Addrs, peerstore.PermanentAddrTTL)
 
 		wg.Add(1)
 		go func(p *tool.PeerNode) {

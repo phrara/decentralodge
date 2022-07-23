@@ -63,6 +63,10 @@ func (c *Config) Load() *Config {
 		return nil
 	}
 	pk, err := tool.LoadFile(kpath)
+	if len(pk) == 0 {
+		// prvKey is empty
+		log.Printf("you haven't configure your own private key, so that your Peer ID could be variable")
+	}
 	c.PrvKey, _ = crypto.UnmarshalPrivateKey(pk)
 	return c
 }

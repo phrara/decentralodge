@@ -85,9 +85,6 @@ var cancel context.CancelFunc
 // The argument `period` will be affective if `auto` is true,
 // and it'll be useless if `auto` is false.
 func (n *HostNode) RouterDistributeOn(auto bool, period int) {
-	if n.Router.Sum() == 0 {
-		return
-	}
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	cancel = cancelFunc
 	if auto {

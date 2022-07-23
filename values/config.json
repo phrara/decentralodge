@@ -1,8 +1,1 @@
-{"username":"root",
-  "password":"root",
-  "ip":"127.0.0.1",
-  "port":"8082",
-  "randomSeed":823,
-  "prvKey":null,
-  "bootstrapNode": "/ip4/127.0.0.1/tcp/8083/p2p/QmfSRvrHwYws2rGMRt3eerQ3Uixr2Ta2CVkNSQ5oSryELW"
-}
+{"username":"root","password":"root","ip":"127.0.0.1","port":"8082","randomSeed":823,"prvKey":null,"bootstrapNode":""}

@@ -10,6 +10,7 @@ import (
 )
 
 func RecvFileHandler(s network.Stream) {
+
 	pn := tool.ParsePeerNode(s.Conn().RemoteMultiaddr().String() + "/p2p/" + s.Conn().RemotePeer().String())
 	serv.router.AddNode(pn)
 	fmt.Println("Get a file from", pn.String())
@@ -32,8 +33,15 @@ func RecvFileHandler(s network.Stream) {
 	}
 	p.Value = val
 
-	defer s.Close()
 	fmt.Println(tool.NewFile("", "").Unwrap(p.Value).Content)
+
+	acc := &tool.Packet{
+		Tag:   1,
+		Len:   3,
+		Value: []byte("acc"),
+	}
+	data, _ := acc.Wrap()
+	s.Write(data)
 
 }
 
@@ -46,6 +54,7 @@ func (s *Service) SendFile(pn *tool.PeerNode, file string) bool {
 			fmt.Println(err)
 			return false
 		}
+		defer stream.Close()
 		f := tool.NewFile("txt", file).Wrap()
 		packet := &tool.Packet{
 			Tag:   2,
@@ -56,8 +65,30 @@ func (s *Service) SendFile(pn *tool.PeerNode, file string) bool {
 
 		stream.Write(wrap)
 
-		fmt.Println("send a file successfully")
-		return true
+		acc := &tool.Packet{}
+		header := make([]byte, tool.HEADER)
+		_, err = io.ReadFull(stream, header)
+		if err != nil {
+			return false
+		}
+		err = acc.ParseHeader(header)
+		if err != nil || packet.Len == 0 {
+			return false
+		}
+		val := make([]byte, acc.Len)
+		_, err = io.ReadFull(stream, val)
+		if err != nil {
+			return false
+		}
+		acc.Value = val
+
+		if acc.ValString() == "acc" {
+			fmt.Println("send a file successfully")
+			return true
+		} else {
+			return false
+		}
+
 	} else {
 		return false
 	}

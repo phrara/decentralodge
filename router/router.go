@@ -140,6 +140,9 @@ func (r *Router) Update(table Table) {
 	for i := 1; i <= 256; i++ {
 		if table[i] != nil {
 			for e := table[i].Front(); e != nil; e = e.Next() {
+				if e.Value.(*tool.PeerNode).String() == r.HostNode.String() {
+					continue
+				}
 				r.AddNode(e.Value.(*tool.PeerNode))
 			}
 		}

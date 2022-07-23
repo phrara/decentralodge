@@ -1,6 +1,8 @@
 package tool
 
-import "github.com/libp2p/go-libp2p-core/peer"
+import (
+	"github.com/libp2p/go-libp2p-core/peer"
+)
 
 func GetDistByXor(dst, src peer.ID) int {
 	dst = dst[2:]

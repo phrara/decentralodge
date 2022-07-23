@@ -15,7 +15,6 @@ func JoinApplyHandler(s network.Stream) {
 
 	// 节点加入路由表
 	serv.router.AddNode(pn)
-	fmt.Println("recent router table:\n", serv.router.RawData())
 
 	p := &tool.Packet{
 		Tag:   1,
