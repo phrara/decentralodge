@@ -19,12 +19,14 @@ p2p JoinApply is done
 <br>
 p2p RouterDistribution is done
 ```go
-    hn, _ := core.GenerateNode() 
+hn, _ := core.GenerateNode() 
+{
 	hn.JoinNetwork()
 	hn.RouterDistributeOn(false, 10)
 	// hn.RouterDistributeOn(true, 0)
 	hn.RouterDistributeOff()
-	select{}
+}
+select{}
 ```
 
 
